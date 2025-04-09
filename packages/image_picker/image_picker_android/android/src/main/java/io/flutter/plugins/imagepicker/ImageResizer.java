@@ -42,7 +42,14 @@ class ImageResizer {
     boolean shouldScale = maxWidth != null || maxHeight != null || imageQuality < 100;
     if (!shouldScale) {
       return imagePath;
+    } 
+    
+    String[] parts = imagePath.split("\\.");
+    String extension = parts[parts.length - 1];
+    if (extension.toLowerCase().equals("gif")) {
+      return imagePath;
     }
+
     try {
       String[] pathParts = imagePath.split("/");
       String imageName = pathParts[pathParts.length - 1];
